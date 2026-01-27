@@ -121,19 +121,16 @@ select:hover, input:hover {
 #header {
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
-  z-index: 2000;
-  background: #2b1f3a;
-  color: #fff;
-}
+  width: 100%;
+  z-index: 1500;
 
-.header-inner {
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1rem;
+  /* ヘッダー全体で同じグラデを使う */
+  background: linear-gradient(
+    90deg,
+    #0b1c2d 0%,
+    #2a1220 55%,
+    #6e1f2a 100%
+  );
 }
 
 .header-title {
