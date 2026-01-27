@@ -136,6 +136,52 @@ select:hover, input:hover {
   padding: 0 1rem;
 }
 
+.header-title {
+  background: none;
+  border: none;
+  color: #f4f1ee;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chapter-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #b2456c; /* 血 */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.chapter-list {
+  position: absolute;
+  top: 60px;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.chapter-list button {
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: #ede9e8;
+  color: #2b1f3a;
+  border: none;
+  cursor: pointer;
+}
+
+.header-wave {
+  height: 20px;
+  background:
+    radial-gradient(circle at 20% 0, #b2456c 20px, transparent 21px),
+    radial-gradient(circle at 50% 0, #b2456c 18px, transparent 19px),
+    radial-gradient(circle at 80% 0, #b2456c 22px, transparent 23px);
+  background-size: 100px 40px;
+}
+
 
 /*ヘッダーの高さ分マージンをしっかり与える */
 #scenario-box {
