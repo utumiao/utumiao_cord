@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const target = document.querySelector(`.page[data-page="${name}"]`);
     if (target) {
       target.classList.add("active");
-      setupCopyBlocks(target);
       window.scrollTo(0, 0);
     }
   }
@@ -37,55 +36,55 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     errorMessage.style.display = "none";
-    goToPage1();
+    goToScenario();
   });
 
-  skipButton.addEventListener("click", goToPage1);
+  skipButton.addEventListener("click", goToScenario);
 
-  function goToPage1() {
+  function goToScenario() {
     showPage("1");
-    initScenarioPages(); // ← ★ここで[newpage]初期化
+    initScenario();
   }
 
   // =====================
-  // [newpage] 処理
+  // シナリオページ制御
   // =====================
   let scenarioPages = [];
   let currentIndex = 0;
 
-  function initScenarioPages() {
-    const container = document.getElementById("scenario-text");
-    if (!container) return;
+  function initScenario() {
+    scenarioPages = Array.from(
+      document.querySelectorAll(".scenario-page")
+    );
 
-    const parts = container.innerHTML.split("[newpage]");
-    container.innerHTML = "";
-    scenarioPages = [];
-
-    parts.forEach(html => {
-      const div = document.createElement("div");
-      div.className = "scenario-page";
-      div.innerHTML = html.trim();
-      div.style.display = "none";
-      container.appendChild(div);
-      scenarioPages.push(div);
-    });
+    scenarioPages.forEach(p => p.style.display = "none");
+    currentIndex = 0;
 
     showScenarioPage(0);
   }
 
   function showScenarioPage(index) {
     scenarioPages.forEach(p => p.style.display = "none");
-    if (!scenarioPages[index]) return;
 
-    scenarioPages[index].style.display = "block";
-    setupCopyBlocks(scenarioPages[index]);
+    const page = scenarioPages[index];
+    if (!page) return;
+
+    page.style.display = "block";
+    setupCopyBlocks(page);
     currentIndex = index;
+    window.scrollTo(0, 0);
   }
 
-  // グローバルに出す（HTMLから呼ぶ用）
+  // HTMLから呼ぶ用
   window.nextScenarioPage = function () {
     if (currentIndex < scenarioPages.length - 1) {
       showScenarioPage(currentIndex + 1);
+    }
+  };
+
+  window.prevScenarioPage = function () {
+    if (currentIndex > 0) {
+      showScenarioPage(currentIndex - 1);
     }
   };
 
