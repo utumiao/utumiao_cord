@@ -363,17 +363,6 @@ background: #eeffee;
 }
 
 /* ▍左右の縦線 */
-.box17 {
-  display: inline-block;
-  margin: 1.5em; /* 外側余白を少し抑える（上下左右均等） */
-  position: relative;
-  padding: 1em 2em; /* ⬅ 上下1em、左右2emに調整 */
-  border-top: solid 2px black;
-  border-bottom: solid 2px black;
-  box-sizing: border-box;
-}
-
-/* ▍左右の縦線 */
 .box17:before, .box17:after {
   content: '';
   position: absolute;
