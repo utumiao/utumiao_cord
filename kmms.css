@@ -155,7 +155,7 @@ select:hover, input:hover {
     #entrance {
       position: fixed;
       inset: 0;
-      background:#3a2b4f;
+      background: #3a2b4f;
       display: flex;
       flex-direction: column;
       justify-content: center;
