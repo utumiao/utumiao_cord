@@ -126,7 +126,7 @@ select:hover, input:hover {
   right: 0;
   height: 60px; /* 必要に応じて調整 */
   background-color: white;
-  z-index: 9999;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -142,7 +142,7 @@ select:hover, input:hover {
   right: 0;
   height: 60px;
   background-color: white;
-  z-index: 9999;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -171,7 +171,7 @@ select:hover, input:hover {
       justify-content: center;
       align-items: center;
       gap: 1rem;
-      z-index: 1500;
+      z-index: 10000;
     }
 
     #entrance input {
