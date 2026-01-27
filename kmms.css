@@ -54,9 +54,11 @@ h1 {
 
 .buttons {
   display: flex;
+  justify-content: center;
   gap: 1rem;
   margin-top: 1rem;
 }
+
 
 button {
   padding: 0.6rem 1.4rem;
