@@ -1,11 +1,13 @@
 /* ----- 全体の見た目の設定 ----- */
 body {
-  font-family:'Kiwi Maru', serif,'Sawarabi Gothic', 'Yu Gothic UI', sans-serif;
+  font-family: "Source Han Sans JP", sans-serif;
+  letter-spacing: 0.05em;
+  line-height: 1.85;
+  font-weight: 400;
   /* 背景 */
   background-color: #f3f4f6;
 	color: #10223a;
 }
-
 
 /* ----- メインの箱（シナリオ表示エリア） ----- */
 #scenario-box {
@@ -18,14 +20,22 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
-/* ----- 見出しタイトル ----- */
+/* ----- 文字・フォント設定 ----- */
 h1 {
-  font-family: 'Kiwi Maru', serif;
+  font-family: "Zen Kaku Gothic New", sans-serif;
   font-size: 2em;
-  font-weight: 600;
+  font-weight: 500;
   color: #222;
   margin: 1rem 0;
   text-align: center; /* お好みで中央揃えに */
+	letter-spacing: 0.08em;
+}
+
+/* サブタイトルや見出し */
+h2, h3 {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.08em;
 }
 
 /* ----- フォームや操作系ボタンのまとまり ----- */
