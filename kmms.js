@@ -44,5 +44,23 @@ function showPage(pageName) {
     window.scrollTo(0, 0);
   }
 }
+  // コピーブロック
+function setupCopyBlocks(root = document) {
+  root.querySelectorAll(".copy-block").forEach(block => {
+    if (block.querySelector(".copy-btn")) return;
+
+    const btn = document.createElement("button");
+    btn.className = "copy-btn";
+    btn.textContent = "コピー";
+
+    btn.addEventListener("click", () => {
+      navigator.clipboard.writeText(block.innerText);
+      btn.textContent = "完了";
+      setTimeout(() => btn.textContent = "コピー", 1200);
+    });
+
+    block.appendChild(btn);
+  });
+}
 
 
