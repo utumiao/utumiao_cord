@@ -69,11 +69,23 @@ button {
 #start-button {
   background-color: #b2456c;
   color: white;
+  transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+#start-button:hover {
+  background-color: #6e1f2a;
+  transform: translateY(-1px);
 }
 
 #skip-button {
-  background-color: #444;
+  background-color: #000;
   color: white;
+  transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+#skip-button:hover {
+  background-color: #e07575;
+  transform: translateY(-1px);
 }
 
 #error-message {
