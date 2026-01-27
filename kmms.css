@@ -133,6 +133,15 @@ select:hover, input:hover {
   );
 }
 
+.header-inner {
+  height: 64px;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
 .header-title {
   background: none;
   border: none;
@@ -184,10 +193,10 @@ select:hover, input:hover {
 
 
 .header-wave {
+  display: block;
   width: 100%;
-  height: 120px;
-  overflow: hidden;
-  line-height: 0;
+  height: 32px;        /* ← 控えめ */
+  margin-top: -1px;   /* 隙間防止 */
 }
 
 .header-wave svg {
