@@ -135,6 +135,8 @@ document.getElementById("header-title").addEventListener("click", () => {
   // ✅ プルダウン
 const toggle = document.getElementById("chapter-toggle");
 const list = document.getElementById("chapter-list");
+chapterToggle.classList.toggle("active");
+
 
 toggle.addEventListener("click", () => {
   list.style.display = list.style.display === "flex" ? "none" : "flex";
