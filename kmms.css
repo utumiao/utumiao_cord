@@ -106,7 +106,8 @@ select:hover, input:hover {
 }
 
  <!-- ✅ 補助CSS -->
- 
+
+  <!-- ヘッダー -->
   <style>
 #header {
   position: fixed;
@@ -150,6 +151,7 @@ select:hover, input:hover {
   display: none;
 }
 
+ <!-- 名前入力するとこ -->
     #entrance {
       position: fixed;
       inset: 0;
