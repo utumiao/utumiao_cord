@@ -171,7 +171,7 @@ select:hover, input:hover {
       justify-content: center;
       align-items: center;
       gap: 1rem;
-      z-index: 10000;
+      z-index: 1500;
       padding: 0.5rem;
       font-size: 1.1rem;
       border-radius: 6px;
@@ -182,7 +182,7 @@ select:hover, input:hover {
 
     #start-btn {
       padding: 0.7rem 1.5rem;
-      background: #9ce6d9;
+      background: #b2456c;
       color: white;
       border: none;
       border-radius: 6px;
@@ -190,7 +190,7 @@ select:hover, input:hover {
     }
 
     #start-btn:hover {
-      background: #005fa3;
+      background: #6e1f2a;
     }
 
     #chapter-title {
@@ -206,7 +206,7 @@ select:hover, input:hover {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  background-color: #2f5248; /*背景 */
+  background-color: #b2456c; /*背景 */
   border: none;
   border-radius: 4px;
   color: #fff;
@@ -217,7 +217,7 @@ select:hover, input:hover {
 }
 
 .copy-paragraph-btn:hover {
-  background-color: #679c8d;
+  background-color: #6e1f2a;
   color: #000;
 }
 
