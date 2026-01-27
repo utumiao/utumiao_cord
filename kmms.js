@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 // =====================
-// ページ切り替え
+// ページ切り替え（大枠）
 // =====================
 function showPage(name) {
   document.querySelectorAll(".page").forEach(p => {
@@ -60,7 +60,7 @@ function showPage(name) {
 }
 
 // =====================
-// エントランス処理
+// エントランス
 // =====================
 const startButton = document.getElementById("start-button");
 const skipButton = document.getElementById("skip-button");
@@ -85,48 +85,12 @@ startButton.addEventListener("click", () => {
 
 skipButton.addEventListener("click", goToScenario);
 
-function goToScenario() {
-  showPage("1");
-  setupScenarioPages();
-}
-
 // =====================
-// newpage 分割
+// シナリオ初期化
 // =====================
-let currentScenarioPage = 0;
+let scenarioPages = [];
+let currentScenarioIndex = 0;
 
-function setupScenarioPages() {
-  const container = document.getElementById("scenario-text");
-  const raw = container.innerHTML;
-  const parts = raw.split("[newpage]");
-
-  container.innerHTML = "";
-
-  parts.forEach((html, i) => {
-    const page = document.createElement("div");
-    page.className = "scenario-page";
-    page.dataset.index = i;
-    page.innerHTML = html.trim();
-    container.appendChild(page);
-  });
-
-  showScenarioPage(0);
-}
-
-function showScenarioPage(index) {
-  const pages = document.querySelectorAll(".scenario-page");
-  if (!pages[index]) return;
-
-  pages.forEach(p => p.style.display = "none");
-  pages[index].style.display = "block";
-
-  setupCopyBlocks(pages[index]);
-  currentScenarioPage = index;
-}
-
-function nextScenarioPage() {
-  showScenarioPage(currentScenarioPage + 1);
-}
 
 // =====================
 // コピーブロック自動生成
