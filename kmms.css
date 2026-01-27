@@ -107,16 +107,15 @@ button {
   padding: 0.3rem 0.6rem;
 }
 
-/* note */
 .note {
   position: relative;
-  background-color: #c8bfd6;   /* 紫の塗りつぶし */
+  background-color: #c8bfd6; /* 紫の塗りつぶし */
   color: #10223a;
 
-  padding: 0.9rem 1.6rem;
+  padding: 1rem 1.8rem;
   margin: 1.5rem auto;
 
-  border-radius: 999px;        /* 完全な楕円 */
+  border-radius: 999px;
   max-width: 90%;
 
   display: flex;
@@ -127,13 +126,20 @@ button {
   line-height: 1.6;
 }
 
-/* 内側の細い線 */
-.note::before {
+/* 重ねている細い線の楕円 */
+.note::after {
   content: "";
   position: absolute;
-  inset: 3px;                  /* ← 内側にずらす量（1〜2pxなら2〜3px） */
+
+  /* 「重ねてる感」が出るポイント */
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  top: 3px;
+  left: 3px;
+
   border: 1px solid #9e8751;
   border-radius: 999px;
+
   pointer-events: none;
 }
 
