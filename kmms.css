@@ -114,7 +114,7 @@ button {
   color: #361A47;
 
   background-color: #c8bfd6;   /* 紫の塗りつぶし */
-  border-radius: 999px;        /* 楕円 */
+  border-radius: 500px;        /* 楕円 */
   max-width: 90%;
   margin: 1.5em auto;
 
