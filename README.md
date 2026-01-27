@@ -5,6 +5,6 @@ cssとjsの保管庫
 <br>
 自分用<br>
 css<br>
-https://utumiao.github.io/utumiao_cord/css/main.css
+https://utumiao.github.io/utumiao_cord/a.css
 <br>JS<br>
-https://utumiao.github.io/utumiao_cord/js/main.js
+https://utumiao.github.io/utumiao_cord/a.js
