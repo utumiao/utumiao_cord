@@ -44,23 +44,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-      chapterContentEl.querySelectorAll('.copy-block').forEach(block => {
-      const btn = document.createElement('button');
-      btn.textContent = 'コピー';
-      btn.className = 'copy-paragraph-btn';
-      btn.addEventListener('click', () => {
-        const temp = block.cloneNode(true);
-        temp.querySelectorAll('.copy-paragraph-btn').forEach(b => b.remove());
-        temp.querySelectorAll('ruby').forEach(ruby => {
-          const rt = ruby.querySelector('rt')?.textContent || '';
-          ruby.replaceWith(document.createTextNode(`${ruby.childNodes[0].textContent}（${rt}）`));
-        });
-        navigator.clipboard.writeText(temp.innerText).then(() => {
-          btn.textContent = '完了';
-          setTimeout(() => btn.textContent = 'コピー', 1500);
-        });
+  function setupCopyBlocks(root = document) {
+    root.querySelectorAll(".copy-block").forEach(block => {
+      if (block.querySelector(".copy-btn")) return;
+
+      const btn = document.createElement("button");
+      btn.className = "copy-btn";
+      btn.textContent = "コピー";
+
+      btn.addEventListener("click", () => {
+        navigator.clipboard.writeText(block.innerText);
+        btn.textContent = "完了";
+        setTimeout(() => btn.textContent = "コピー", 1200);
       });
+
       block.appendChild(btn);
     });
+  }
 
 });
