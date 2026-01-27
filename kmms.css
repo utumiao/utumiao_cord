@@ -115,9 +115,9 @@ select:hover, input:hover {
   background: #005fa3;
 }
 
- <!-- ✅ 補助CSS -->
+/*補助css */
 
-  <!-- ヘッダー -->
+/*ヘッダー */
   <style>
 #header {
   position: fixed;
@@ -161,7 +161,7 @@ select:hover, input:hover {
   display: none;
 }
 
- <!-- 名前入力するとこ -->
+/*名前入力するとこ */
     #entrance {
       position: fixed;
       inset: 0;
