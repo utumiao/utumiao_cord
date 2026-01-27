@@ -126,9 +126,9 @@ select:hover, input:hover {
 
   /* ヘッダー全体で同じグラデを使う */
   background: linear-gradient(
-    90deg,
+    180deg,
     #0b1c2d 0%,
-    #2a1220 55%,
+    #2a1220 60%,
     #6e1f2a 100%
   );
 }
@@ -152,27 +152,15 @@ select:hover, input:hover {
 }
 
 .chapter-toggle {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: transparent;
-  border: 2px dashed rgba(255,255,255,0.8);
-  color: white;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: 
-    border-color 0.3s ease,
-    color 0.3s ease,
-    transform 0.2s ease;
+  border: 2px dashed #ffffff;
+  color: #ffffff;
+  transition: border-color 0.3s, color 0.3s;
 }
 
-.chapter-toggle:hover,
-.chapter-toggle.active {
-  border-color: #6fa9ff;
-  color: #6fa9ff;
-  transform: scale(1.05);
+.chapter-toggle:hover {
+  border-color: #6bb6ff;
+  color: #6bb6ff;
 }
-
 
 .chapter-list button {
   background: transparent;
@@ -195,8 +183,7 @@ select:hover, input:hover {
 .header-wave {
   display: block;
   width: 100%;
-  height: 32px;        /* ← 控えめ */
-  margin-top: -1px;   /* 隙間防止 */
+  height: 28px;   /* ← 必ず数値指定 */
 }
 
 .header-wave svg {
