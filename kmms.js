@@ -31,3 +31,12 @@ function goToPage1() {
   // ここに1ページ目の処理を書く
   console.log("1ページ目へ進む");
 }
+
+function showPage(pageId) {
+  document.querySelectorAll(".page").forEach(p => {
+    p.classList.remove("active");
+  });
+  document.getElementById(pageId).classList.add("active");
+}
+showPage("page-1");
+
