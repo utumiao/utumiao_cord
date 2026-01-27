@@ -149,29 +149,42 @@ select:hover, input:hover {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: #b2456c; /* 血 */
-  color: #fff;
-  border: none;
+  background: transparent;
+  border: 2px dashed rgba(255,255,255,0.8);
+  color: white;
+  font-size: 0.9rem;
   cursor: pointer;
+  transition: 
+    border-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.2s ease;
 }
 
-.chapter-list {
-  position: absolute;
-  top: 60px;
-  right: 1rem;
-  display: none;
-  flex-direction: column;
-  gap: 0.5rem;
+.chapter-toggle:hover,
+.chapter-toggle.active {
+  border-color: #6fa9ff;
+  color: #6fa9ff;
+  transform: scale(1.05);
 }
+
 
 .chapter-list button {
-  padding: 0.4rem 1rem;
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.6);
   border-radius: 999px;
-  background: #ede9e8;
-  color: #2b1f3a;
-  border: none;
+  padding: 0.4rem 1rem;
+  color: white;
+  margin: 0.3rem 0;
   cursor: pointer;
+  transition: all 0.25s ease;
 }
+
+.chapter-list button:hover {
+  border-color: #6fa9ff;
+  color: #6fa9ff;
+  background: rgba(111,169,255,0.08);
+}
+
 
 .header-wave {
   width: 100%;
