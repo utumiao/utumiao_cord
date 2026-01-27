@@ -90,25 +90,25 @@ console.log("kmms.js is running");
   });
 
   // ✅ 「スタート」ボタン
-  startBtn.addEventListener("click", () => {
-    if (!player1Input.value.trim() || !player2Input.value.trim()) {
-      alert("探索者の名前を入力してください！");
-      return;
-    }
+startBtn.addEventListener("click", () => {
+  if (!player1Input.value.trim() || !player2Input.value.trim()) {
+    alert("探索者の名前を入力してください！");
+    return;
+  }
 
-    entrance.style.display = "none";
-    header.style.display = "flex";
-    scenarioBox.style.display = "block";
-    showChapter(0);
-  });
+  entrance.style.display = "none";
+  scenarioBox.style.display = "block";
+  showChapter(0);
+});
+
 
   // ✅ 「スキップ」ボタン
-  skipBtn.addEventListener("click", () => {
-    entrance.style.display = "none";
-    header.style.display = "flex";
-    scenarioBox.style.display = "block";
-    showChapter(0);
-  });
+skipBtn.addEventListener("click", () => {
+  entrance.style.display = "none";
+  scenarioBox.style.display = "block";
+  showChapter(0);
+});
+
 
   // ✅ 「戻る」ボタン
   backToEntranceBtn.addEventListener("click", () => {
