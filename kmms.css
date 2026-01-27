@@ -111,11 +111,9 @@ button {
   position: relative;
 
   font-size: 0.8rem;
-  color: #10223a;
+  color: #361A47;
 
   background-color: #c8bfd6;   /* 紫の塗りつぶし */
-  padding: 1em 1.6em;
-
   border-radius: 999px;        /* 楕円 */
   max-width: 90%;
   margin: 1.5em auto;
