@@ -133,21 +133,6 @@ select:hover, input:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 影があれば視認性↑ */
 }
 
-/*ヘッダー固定 */
-#header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background-color: white;
-  z-index: 1500;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1em;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
 
 /*ヘッダーの高さ分マージンをしっかり与える */
 #scenario-box {
