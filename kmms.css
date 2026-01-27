@@ -152,8 +152,21 @@ select:hover, input:hover {
 }
 
 .chapter-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+
   border: 2px dashed #ffffff;
+  background: transparent;
+
   color: #ffffff;
+  font-size: 0.9rem;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   transition: border-color 0.3s, color 0.3s;
 }
 
