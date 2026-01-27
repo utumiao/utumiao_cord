@@ -123,14 +123,17 @@ select:hover, input:hover {
   top: 0;
   left: 0;
   right: 0;
-  height: 60px; /* 必要に応じて調整 */
-  background-color: white;
-  z-index: 1500;
+  z-index: 2000;
+  background: #2b1f3a;
+  color: #fff;
+}
+
+.header-inner {
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1em;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 影があれば視認性↑ */
+  padding: 0 1rem;
 }
 
 
