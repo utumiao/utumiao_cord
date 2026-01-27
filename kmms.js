@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", () => {
 const startButton = document.getElementById("start-button");
 const skipButton = document.getElementById("skip-button");
 const errorMessage = document.getElementById("error-message");
@@ -29,8 +30,9 @@ skipButton.addEventListener("click", () => {
 
 function goToPage1() {
   // ここに1ページ目の処理を書く
-  console.log("1ページ目へ進む");
+  showPage("1");
 }
+
 
 function showPage(pageName) {
   document.querySelectorAll(".page").forEach(p => {
@@ -63,4 +65,4 @@ function setupCopyBlocks(root = document) {
   });
 }
 
-
+});
