@@ -32,11 +32,17 @@ function goToPage1() {
   console.log("1ページ目へ進む");
 }
 
-function showPage(pageId) {
+function showPage(pageName) {
   document.querySelectorAll(".page").forEach(p => {
     p.classList.remove("active");
   });
-  document.getElementById(pageId).classList.add("active");
+
+  const target = document.querySelector(`.page[data-page="${pageName}"]`);
+  if (target) {
+    target.classList.add("active");
+    setupCopyBlocks(target);
+    window.scrollTo(0, 0);
+  }
 }
-showPage("page-1");
+
 
