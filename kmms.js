@@ -25,13 +25,13 @@
   // ✅ 章の表示処理
   function showChapter(index) {
     const ch = chapters[index];
-    const name1 = player1Input.value.trim() || "HO熱情";
-    const name2 = player2Input.value.trim() || "HO空論";
+    const name1 = player1Input.value.trim() || "HO預言";
+    const name2 = player2Input.value.trim() || "HO運命";
 
     chapterTitleEl.textContent = ch.title;
     let html = ch.content
-      .replace(/{HO熱情}/g, name1)
-      .replace(/{HO空論}/g, name2);
+      .replace(/{HO預言}/g, name1)
+      .replace(/{HO運命}/g, name2);
     chapterContentEl.innerHTML = html;
 
     // 🔄 「戻る」ボタンの表示制御
