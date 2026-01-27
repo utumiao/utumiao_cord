@@ -172,13 +172,16 @@ select:hover, input:hover {
       align-items: center;
       gap: 1rem;
       z-index: 1500;
-      padding: 0.5rem;
-      font-size: 1.1rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      width: 250px;
-      text-align: center;
     }
+
+#entrance input {
+  width: 260px;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
 
     #start-btn {
       padding: 0.7rem 1.5rem;
