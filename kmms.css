@@ -118,7 +118,6 @@ select:hover, input:hover {
 /*補助css */
 
 /*ヘッダー */
-  <style>
 #header {
   position: fixed;
   top: 0;
@@ -173,9 +172,6 @@ select:hover, input:hover {
       align-items: center;
       gap: 1rem;
       z-index: 1500;
-    }
-
-    #entrance input {
       padding: 0.5rem;
       font-size: 1.1rem;
       border-radius: 6px;
@@ -235,7 +231,7 @@ select:hover, input:hover {
 
 /* ----- トグルボタンのデザイン ----- */
     .toggle-btn {
- 　　 display: flex;
+ 	 display: flex;
  　　 justify-content: center;
  　　 align-items: center;
  　　 text-align: center;
