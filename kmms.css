@@ -109,12 +109,28 @@ button {
 
 /* note */
 .note {
-  border: 2px solid #c8bfd6;
-  outline: 1px solid #9e8751;
-  outline-offset: -6px;
+  position: relative;
+
+  border: 2px solid #c8bfd6;   /* 紫の楕円 */
   border-radius: 999px;
+
   padding: 1rem 1.5rem;
-  margin: 2rem 0;
+  margin: 1.5rem 0;
+
+  width: 100%;                 /* ★これが重要 */
+  box-sizing: border-box;
+}
+
+/* 内側の細い線 */
+.note::after {
+  content: "";
+  position: absolute;
+  inset: 6px;                  /* 内側に少し縮める */
+
+  border: 1px solid #9e8751;
+  border-radius: 999px;
+
+  pointer-events: none;
 }
 
 /* シナリオページ */
