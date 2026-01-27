@@ -109,13 +109,34 @@ button {
 
 /* note */
 .note {
-  border: 2px solid #c8bfd6;
-  outline: 1px solid #9e8751;
-  outline-offset: -6px;
-  border-radius: 999px;
-  padding: 1rem 1.5rem;
-  margin: 2rem 0;
+  position: relative;
+  background-color: #c8bfd6;   /* 紫の塗りつぶし */
+  color: #10223a;
+
+  padding: 0.9rem 1.6rem;
+  margin: 1.5rem auto;
+
+  border-radius: 999px;        /* 完全な楕円 */
+  max-width: 90%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 0.85rem;
+  line-height: 1.6;
 }
+
+/* 内側の細い線 */
+.note::before {
+  content: "";
+  position: absolute;
+  inset: 3px;                  /* ← 内側にずらす量（1〜2pxなら2〜3px） */
+  border: 1px solid #9e8751;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
 
 /* シナリオページ */
 .scenario-page {
