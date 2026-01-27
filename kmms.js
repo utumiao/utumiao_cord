@@ -125,3 +125,28 @@ skipBtn.addEventListener("click", () => {
       top left,
       center ${scrollPercent * 50}%`;
   });
+
+  // ✅ ヘッダー
+document.getElementById("header-title").addEventListener("click", () => {
+  entrance.style.display = "none";
+  scenarioBox.style.display = "block";
+  showChapter(0);
+});
+  // ✅ プルダウン
+const toggle = document.getElementById("chapter-toggle");
+const list = document.getElementById("chapter-list");
+
+toggle.addEventListener("click", () => {
+  list.style.display = list.style.display === "flex" ? "none" : "flex";
+});
+  // ✅ 章一覧
+chapters.forEach((ch, i) => {
+  const btn = document.createElement("button");
+  btn.textContent = ch.title;
+  btn.addEventListener("click", () => {
+    showChapter(i);
+    list.style.display = "none";
+  });
+  list.appendChild(btn);
+});
+
