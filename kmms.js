@@ -1,3 +1,5 @@
+console.log("kmms.js is running");
+
 // ✅ 画面の要素を取得
   const entrance = document.getElementById("entrance");
   const player1Input = document.getElementById("player1-name");
