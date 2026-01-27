@@ -297,7 +297,7 @@ background: #eeffee;
   box-shadow: 0px 0px 0px 5px #eeffee;
   border: dashed 1px #8ab8ab;
   padding:1em 0.5em 1em;
-  color: #454545;96
+  color: #454545;
   display: flex;
   justify-content: center;  /* 横方向の中央揃え */
   align-items: center;      /* 縦方向の中央揃え */
@@ -316,7 +316,7 @@ background: #eeffee;
 #start-btn {
   padding: 0.6rem 1.2rem;
   background-color: #9ce6d9;  /* 落ち着いたミントグリーン */
-  color: #00023:59 2025/07/12;
+  color: #000;
   border: none;
   border-radius: 6px;
   font-size: 1rem;
