@@ -90,18 +90,14 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo(0, 0);
   }
 
-  // 🔽 HTML onclick 用（これが無いとエラー出る）
-  window.nextScenarioPage = function () {
-    if (currentIndex < scenario-Page.length - 1) {
-      showScenarioPage(currentIndex + 1);
-    }
-  };
+ function showPage(pageId) {
+  document.querySelectorAll('.page')
+    .forEach(p => p.classList.remove('active'));
 
-  window.prevScenarioPage = function () {
-    if (currentIndex > 0) {
-      showScenarioPage(currentIndex - 1);
-    }
-  };
+  document.getElementById(pageId)
+    .classList.add('active');
+}
+
 
   // =====================
   // コピーブロック
