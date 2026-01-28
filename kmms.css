@@ -92,6 +92,7 @@ button {
 
 /* コピーブロック */
 .copy-block {
+  white-space: pre-wrap;
   position: relative;
   border: 1px solid #ccc;
   border-radius: 8px;
