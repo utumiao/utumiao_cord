@@ -1,33 +1,128 @@
-console.log("kmms.js 読み込まれた！");
-
-let currentScenarioIndex = 0;
-let scenarioPages = [];
-
 document.addEventListener("DOMContentLoaded", () => {
-  scenarioPages = document.querySelectorAll(".scenario-page");
 
-  if (scenarioPages.length === 0) return;
+  // =====================
+  // ページ切り替え（大枠）
+  // =====================
+function showPage(name) {
+  document.querySelectorAll(".page").forEach(p => {
+    p.classList.remove("active");
+  });
 
-  scenarioPages.forEach(p => p.style.display = "none");
-  scenarioPages[0].style.display = "block";
-});
-
-function nextScenarioPage() {
-  if (currentScenarioIndex >= scenarioPages.length - 1) return;
-
-  scenarioPages[currentScenarioIndex].style.display = "none";
-  currentScenarioIndex++;
-  scenarioPages[currentScenarioIndex].style.display = "block";
-
-  window.scrollTo(0, 0);
+  const target = document.querySelector(`.page[data-page="${name}"]`);
+  if (target) {
+    target.classList.add("active");
+    setupCopyBlocks(target); // ← ここ！
+    window.scrollTo(0, 0);
+  }
 }
 
-function prevScenarioPage() {
-  if (currentScenarioIndex <= 0) return;
 
-  scenarioPages[currentScenarioIndex].style.display = "none";
-  currentScenarioIndex--;
-  scenarioPages[currentScenarioIndex].style.display = "block";
+  // =====================
+  // エントランス
+  // =====================
+  const startButton = document.getElementById("start-button");
+  const skipButton  = document.getElementById("skip-button");
+  const errorMessage = document.getElementById("error-message");
 
-  window.scrollTo(0, 0);
+  const inputs = [
+    document.getElementById("PC1-myouji"),
+    document.getElementById("PC1-namae"),
+    document.getElementById("PC2-myouji"),
+    document.getElementById("PC2-namae")
+  ];
+
+  startButton.addEventListener("click", () => {
+    const hasEmpty = inputs.some(i => i.value.trim() === "");
+    if (hasEmpty) {
+      errorMessage.style.display = "block";
+      return;
+    }
+    errorMessage.style.display = "none";
+    goToScenario();
+  });
+
+  skipButton.addEventListener("click", goToScenario);
+
+  function goToScenario() {
+    showPage("1");
+    initScenario();
+  }
+
+  // =====================
+  // シナリオページ制御
+  // =====================
+  let scenarioPages = [];
+  let currentIndex = 0;
+
+  function initScenario() {
+    scenarioPages = Array.from(
+      document.querySelectorAll(".scenario-page")
+    );
+
+    scenarioPages.forEach(p => p.style.display = "none");
+    currentIndex = 0;
+
+    showScenarioPage(0);
+  }
+
+  function showScenarioPage(index) {
+    scenarioPages.forEach(p => p.style.display = "none");
+
+    const page = scenarioPages[index];
+    if (!page) return;
+
+    page.style.display = "block";
+    setupCopyBlocks(page);
+    currentIndex = index;
+    window.scrollTo(0, 0);
+  }
+
+  // HTMLから呼ぶ用
+  window.nextScenarioPage = function () {
+    if (currentIndex < scenarioPages.length - 1) {
+      showScenarioPage(currentIndex + 1);
+    }
+  };
+
+  window.prevScenarioPage = function () {
+    if (currentIndex > 0) {
+      showScenarioPage(currentIndex - 1);
+    }
+  };
+
+// =====================
+  // コピーブロック
+  // =====================
+  function setupCopyBlocks(root = document) {
+    root.querySelectorAll(".copy-block").forEach(block => {
+      if (block.querySelector(".copy-btn")) return;
+
+      const btn = document.createElement("button");
+      btn.className = "copy-btn";
+      btn.textContent = "コピー";
+
+btn.onclick = () => {
+  const text = getTextWithRuby(block);
+  navigator.clipboard.writeText(text);
+  btn.textContent = "完了";
+  setTimeout(() => btn.textContent = "コピー", 1200);
+};
+
+
+      block.appendChild(btn);
+    });
+  }
+
+});
+
+function getTextWithRuby(element) {
+  const clone = element.cloneNode(true);
+
+  clone.querySelectorAll("ruby").forEach(ruby => {
+    const rb = ruby.childNodes[0]?.textContent || "";
+    const rt = ruby.querySelector("rt")?.textContent || "";
+    ruby.replaceWith(`${rb}（${rt}）`);
+  });
+
+  return clone.innerText;
 }
