@@ -71,3 +71,32 @@ function applyReplace() {
     content.style.display =
       content.style.display === 'block' ? 'none' : 'block';
   }
+
+  /* ===== シナリオへ ===== */
+  if (e.target.classList.contains('enter-scenario')) {
+    const inputs = document.querySelectorAll('[data-key]');
+    const error = document.getElementById('inputError');
+    error.textContent = '';
+
+    for (const i of inputs) {
+      if (!i.value) {
+        error.textContent = '入力に不足があります！';
+        return;
+      }
+      state[i.dataset.key] = i.value;
+    }
+
+    applyReplace();
+    showPage('page1');
+  }
+
+  /* ===== 後で入力する ===== */
+  if (e.target.classList.contains('enter-later')) {
+    document.querySelectorAll('[data-key]').forEach(i => {
+      state[i.dataset.key] = i.placeholder;
+    });
+
+    applyReplace();
+    showPage('page1');
+  }
+
