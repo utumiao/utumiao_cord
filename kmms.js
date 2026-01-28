@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.getElementById("start-button");
   const skipButton = document.getElementById("skip-button");
   const errorMessage = document.getElementById("error-message");
-  
+
   const inputs = [
     document.getElementById("PC1-myouji"),
     document.getElementById("PC1-namae"),
