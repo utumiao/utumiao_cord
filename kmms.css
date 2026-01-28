@@ -137,9 +137,8 @@ input {
 
 /* ===== 範囲外文字（p, h） ===== */
 p, h1, h2, h3 {
-  font-family: "Noto Serif JP", serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
+  font-family: "Zen Kaku Gothic Antique", sans-serif;
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -157,6 +156,10 @@ p, h1, h2, h3 {
 #entrance h2 {
   color: #cca11f;
   margin-bottom: 4px;
+  font-family: "Noto Serif JP", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
 }
 
 /* 入力欄横並び */
