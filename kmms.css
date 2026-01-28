@@ -6,17 +6,16 @@ body {
 }
 
 /* ページ管理 */
-.page {
-  display: none;
-  min-height: 100vh;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 2rem;
-}
+    .page {
+      display: none;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
 
-.page.active {
-  display: block;
-}
+    .page.active {
+      display: block;
+    }
 
 /* 見出し */
 h1 {
