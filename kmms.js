@@ -50,11 +50,13 @@ function goPrev() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // renderPage(0); ← これを消す
+});
+
 
   // =====================
   // エントランス
   // =====================
-  const entrance = document.getElementById("entrance");
   const startButton = document.getElementById("start-button");
   const skipButton  = document.getElementById("skip-button");
   const errorMessage = document.getElementById("error-message");
