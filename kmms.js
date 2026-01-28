@@ -65,37 +65,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // =====================
   // シナリオページ制御
   // =====================
-  let scenario-Page = [];
-  let currentIndex = 0;
-
-  function initScenario() {
-    scenario-Page = Array.from(
-      document.querySelectorAll(".scenario-page")
-    );
-
-    scenario-Page.forEach(p => p.style.display = "none");
-    currentIndex = 0;
-    showScenarioPage(0);
-  }
-
-  function showScenarioPage(index) {
-    scenario-Page.forEach(p => p.style.display = "none");
-
-    const page = scenario-Page[index];
-    if (!page) return;
-
-    page.style.display = "block";
-    setupCopyBlocks(page);
-    currentIndex = index;
-    window.scrollTo(0, 0);
-  }
-
  function showPage(pageId) {
   document.querySelectorAll('.page')
     .forEach(p => p.classList.remove('active'));
 
   document.getElementById(pageId)
     .classList.add('active');
+   
+       const page = scenario-Page[index];
+    if (!page) return;
+
+    page.style.display = "block";
+    setupCopyBlocks(page);
+    currentIndex = index;
+    window.scrollTo(0, 0);
 }
 
 
