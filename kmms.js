@@ -68,17 +68,17 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("PC2-namae")
   ];
 
-  startButton.addEventListener("click", () => {
+  start-Button.addEventListener("click", () => {
     const hasEmpty = inputs.some(i => i.value.trim() === "");
     if (hasEmpty) {
       errorMessage.style.display = "block";
       return;
     }
-    errorMessage.style.display = "none";
+    error-Message.style.display = "none";
     goToScenario();
   });
 
-  skipButton.addEventListener("click", goToScenario);
+  skip-Button.addEventListener("click", goToScenario);
 
   function goToScenario() {
     showPage("1");
