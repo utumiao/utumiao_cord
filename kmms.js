@@ -12,47 +12,65 @@ function getTextWithRuby(element) {
 
   return clone.innerText;
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-
 // =====================
-// ページ制御（超シンプル）
+// ページ制御
 // =====================
-let pages = [];
-let currentPage = 0;
+const root = document.getElementById("scenario-root");
+let currentIndex = 0;
+const history = [];
 
-document.addEventListener("DOMContentLoaded", () => {
-  pages = Array.from(document.querySelectorAll(".page"));
+function renderPage(index) {
+  const page = scenario[index];
+  if (!page) return;
 
-  // 全部非表示
-  pages.forEach(p => p.style.display = "none");
+  history.push(currentIndex);
+  currentIndex = index;
 
-  // 最初の1ページだけ表示
-  if (pages[0]) {
-    pages[0].style.display = "block";
-  }
-});
+  root.innerHTML = `
+    <h2>${page.title}</h2>
+    ${page.content}
+  `;
 
-// 次のページへ
-function nextPage() {
-  if (currentPage < pages.length - 1) {
-    pages[currentPage].style.display = "none";
-    currentPage++;
-    pages[currentPage].style.display = "block";
-    window.scrollTo(0, 0);
+  setupCopyBlocks(root);
+  window.scrollTo(0, 0);
+}
+
+function goNext() {
+  const page = scenario[currentIndex];
+  if (page.choices && page.choices[0]) {
+    renderPage(page.choices[0].next);
   }
 }
 
-// 前のページへ
-function prevPage() {
-  if (currentPage > 0) {
-    pages[currentPage].style.display = "none";
-    currentPage--;
-    pages[currentPage].style.display = "block";
-    window.scrollTo(0, 0);
+function goPrev() {
+  if (history.length > 1) {
+    history.pop();
+    renderPage(history.pop());
   }
 }
 
+// =====================
+// コピーブロック
+// =====================
+function setupCopyBlocks(root = document) {
+  root.querySelectorAll(".copy-block").forEach(block => {
+    if (block.querySelector(".copy-btn")) return;
+
+    const btn = document.createElement("button");
+    btn.className = "copy-btn";
+    btn.textContent = "コピー";
+
+    btn.onclick = () => {
+      navigator.clipboard.writeText(block.innerText);
+      btn.textContent = "完了";
+      setTimeout(() => btn.textContent = "コピー", 1200);
+    };
+
+    block.appendChild(btn);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
 
   // =====================
   // エントランス
@@ -84,28 +102,6 @@ function prevPage() {
     showPage("1");
     initScenario();
   }
-
- 
-  // =====================
-  // コピーブロック
-  // =====================
-  function setupCopyBlocks(root = document) {
-    root.querySelectorAll(".copy-block").forEach(block => {
-      if (block.querySelector(".copy-btn")) return;
-
-      const btn = document.createElement("button");
-      btn.className = "copy-btn";
-      btn.textContent = "コピー";
-
-      btn.onclick = () => {
-        const text = getTextWithRuby(block);
-        navigator.clipboard.writeText(text);
-        btn.textContent = "完了";
-        setTimeout(() => btn.textContent = "コピー", 1200);
-      };
-
-      block.appendChild(btn);
-    });
-  }
+  
 
 });
