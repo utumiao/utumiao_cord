@@ -29,7 +29,7 @@ function goTo(pageName) {
 
 document.addEventListener("DOMContentLoaded", () => {
   // renderPage(0); ← これを消す
-});
+
 
 
   // =====================
@@ -45,23 +45,34 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("PC2-myouji"),
     document.getElementById("PC2-namae")
   ];
+});
 
-  start-Button.addEventListener("click", () => {
-    const hasEmpty = inputs.some(i => i.value.trim() === "");
-    if (hasEmpty) {
-      errorMessage.style.display = "block";
-      return;
+  function showPage(name) {
+    document.querySelectorAll(".page").forEach(p => {
+      p.classList.remove("active");
+    });
+
+    const target = document.querySelector(`.page[data-page="${name}"]`);
+    if (target) {
+      target.classList.add("active");
+      window.scrollTo(0, 0);
     }
-    error-Message.style.display = "none";
-    goToScenario();
+  }
+
+  // シナリオへ（入力チェックあり）
+  startButton.addEventListener("click", () => {
+    // 今回は「入力欄があってもなくても」通す
+    errorMessage.style.display = "none";
+    showPage("1");
   });
 
-  skip-Button.addEventListener("click", goToScenario);
-
-  function goToScenario() {
+  // 後で入力（無条件）
+  skipButton.addEventListener("click", () => {
     showPage("1");
-    initScenario();
-  }
+  });
+
+});
+
   
 // =====================
 // コピーブロック
