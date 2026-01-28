@@ -15,37 +15,15 @@ function getTextWithRuby(element) {
 // =====================
 // ページ制御
 // =====================
-const root = document.getElementById("scenario-page");
-let currentIndex = 0;
-const history = [];
+function goTo(pageName) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
 
-function renderPage(index) {
-  const page = scenario[index];
-  if (!page) return;
-
-  history.push(currentIndex);
-  currentIndex = index;
-
-  root.innerHTML = `
-    <h2>${page.title}</h2>
-    ${page.content}
-  `;
-
-  setupCopyBlocks(root);
-  window.scrollTo(0, 0);
-}
-
-function goNext() {
-  const page = scenario[currentIndex];
-  if (page.choices && page.choices[0]) {
-    renderPage(page.choices[0].next);
-  }
-}
-
-function goPrev() {
-  if (history.length > 1) {
-    history.pop();
-    renderPage(history.pop());
+  const target = document.querySelector(`.page[data-page="${pageName}"]`);
+  if (target) {
+    target.classList.add("active");
+    window.scrollTo(0, 0);
   }
 }
 
