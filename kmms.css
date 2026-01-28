@@ -16,11 +16,18 @@ h1 {
 header {
   position: sticky;
   top: 0;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
-  padding: 10px 16px;
-  background: #fff;
-  border-bottom: 1px solid #ccc;
+  align-items: center;
+  padding: 12px 20px;
+  background: linear-gradient(
+    to bottom,
+    #0f0f66,
+    #6e1f2a
+  );
+  color: white;
+  transition: background 0.3s, opacity 0.3s;
 }
 
 .header-title {
@@ -50,6 +57,8 @@ header {
 .page {
   display: none;
   padding: 20px;
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 .page.active {
@@ -116,3 +125,69 @@ input {
 p, h1, h2, h3 {
   font-weight: normal;
 }
+
+/* ===== エントランス中央寄せ ===== */
+#entrance {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+/* HOタイトル */
+#entrance h2 {
+  color: #e6b422;
+  margin-bottom: 4px;
+}
+
+/* 入力欄横並び */
+.input-row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* 入力欄（平行四辺形） */
+.input-row input {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #e6b422;
+  transform: skew(-12deg);
+  background: #fff;
+}
+
+.input-row input::placeholder {
+  color: #999;
+}
+
+/* ===== 共通ボタン ===== */
+button {
+  padding: 10px 26px;
+  border-radius: 999px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+/* 明ボタン */
+.enter-scenario {
+  background: #b2456c;
+}
+
+.enter-scenario:hover {
+  background: #6e1f2a;
+}
+
+/* 後で入力 */
+.enter-later {
+  background: #000;
+}
+
+.enter-later:hover {
+  background: #666;
+}
+
