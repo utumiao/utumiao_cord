@@ -15,21 +15,44 @@ function getTextWithRuby(element) {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  // =====================
-  // 大枠ページ切り替え
-  // =====================
-  function showPage(name) {
-    document.querySelectorAll(".page").forEach(p => {
-      p.classList.remove("active");
-    });
+// =====================
+// ページ制御（超シンプル）
+// =====================
+let pages = [];
+let currentPage = 0;
 
-    const target = document.querySelector(`.page[data-page="${name}"]`);
-    if (target) {
-      target.classList.add("active");
-      setupCopyBlocks(target);
-      window.scrollTo(0, 0);
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  pages = Array.from(document.querySelectorAll(".page"));
+
+  // 全部非表示
+  pages.forEach(p => p.style.display = "none");
+
+  // 最初の1ページだけ表示
+  if (pages[0]) {
+    pages[0].style.display = "block";
   }
+});
+
+// 次のページへ
+function nextPage() {
+  if (currentPage < pages.length - 1) {
+    pages[currentPage].style.display = "none";
+    currentPage++;
+    pages[currentPage].style.display = "block";
+    window.scrollTo(0, 0);
+  }
+}
+
+// 前のページへ
+function prevPage() {
+  if (currentPage > 0) {
+    pages[currentPage].style.display = "none";
+    currentPage--;
+    pages[currentPage].style.display = "block";
+    window.scrollTo(0, 0);
+  }
+}
+
 
   // =====================
   // エントランス
@@ -62,49 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initScenario();
   }
 
-  // =====================
-  // シナリオページ制御
-  // =====================
-  let scenarioPages = [];
-  let currentIndex = 0;
-
-  function initScenario() {
-    scenarioPages = Array.from(
-      document.querySelectorAll(".scenario-page")
-    );
-
-    scenarioPages.forEach(p => p.style.display = "none");
-    currentIndex = 0;
-
-    showScenarioPage(0);
-  }
-
-  function showScenarioPage(index) {
-    scenarioPages.forEach(p => p.style.display = "none");
-
-    const page = scenarioPages[index];
-    if (!page) return;
-
-    page.style.display = "block";
-    setupCopyBlocks(page);
-    currentIndex = index;
-    window.scrollTo(0, 0);
-  }
-
-  // HTMLから呼ぶ用
-  window.nextScenarioPage = function () {
-    if (currentIndex < scenarioPages.length - 1) {
-      showScenarioPage(currentIndex + 1);
-    }
-  };
-
-  window.prevScenarioPage = function () {
-    if (currentIndex > 0) {
-      showScenarioPage(currentIndex - 1);
-    }
-  };
-
-
+ 
   // =====================
   // コピーブロック
   // =====================
