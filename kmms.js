@@ -99,14 +99,28 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.className = "copy-btn";
       btn.textContent = "コピー";
 
-      btn.onclick = () => {
-        navigator.clipboard.writeText(block.innerText);
-        btn.textContent = "完了";
-        setTimeout(() => btn.textContent = "コピー", 1200);
-      };
+btn.onclick = () => {
+  const text = getTextWithRuby(block);
+  navigator.clipboard.writeText(text);
+  btn.textContent = "完了";
+  setTimeout(() => btn.textContent = "コピー", 1200);
+};
+
 
       block.appendChild(btn);
     });
   }
 
 });
+
+function getTextWithRuby(element) {
+  const clone = element.cloneNode(true);
+
+  clone.querySelectorAll("ruby").forEach(ruby => {
+    const rb = ruby.childNodes[0]?.textContent || "";
+    const rt = ruby.querySelector("rt")?.textContent || "";
+    ruby.replaceWith(`${rb}（${rt}）`);
+  });
+
+  return clone.innerText;
+}
