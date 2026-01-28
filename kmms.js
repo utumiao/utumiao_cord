@@ -1,87 +1,73 @@
-// =====================
-// ルビ付きテキスト取得
-// =====================
-function getTextWithRuby(element) {
-  const clone = element.cloneNode(true);
+const state = {};
 
-  clone.querySelectorAll("ruby").forEach(ruby => {
-    const rb = ruby.childNodes[0]?.textContent || "";
-    const rt = ruby.querySelector("rt")?.textContent || "";
-    ruby.replaceWith(`${rb}（${rt}）`);
-  });
+/* ===== ページ管理 ===== */
+const pages = document.querySelectorAll('.page');
+const pageMenu = document.getElementById('pageMenu');
 
-  return clone.innerText;
+pages.forEach(p => {
+  const item = document.createElement('div');
+  item.textContent = p.dataset.title;
+  item.onclick = () => showPage(p.id);
+  pageMenu.appendChild(item);
+});
+
+document.getElementById('pageMenuBtn').onclick = () => {
+  pageMenu.style.display =
+    pageMenu.style.display === 'block' ? 'none' : 'block';
+};
+
+function showPage(id) {
+  pages.forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
 
-
-document.addEventListener("DOMContentLoaded", () => {
-  // renderPage(0); ← これを消す
-
-
-  // =====================
-  // エントランス
-  // =====================
-  const startButton = document.getElementById("start-button");
-  const skipButton  = document.getElementById("skip-button");
-  const errorMessage = document.getElementById("error-message");
-
-  const inputs = [
-    document.getElementById("PC1-myouji"),
-    document.getElementById("PC1-namae"),
-    document.getElementById("PC2-myouji"),
-    document.getElementById("PC2-namae")
-  ];
-  
-// =====================
-// ページ制御
-// =====================
-
-  function showPage(name) {
-    document.querySelectorAll(".page").forEach(p => {
-      p.classList.remove("active");
-    });
-
-    const target = document.querySelector(`.page[data-page="${name}"]`);
-    if (target) {
-      target.classList.add("active");
-      window.scrollTo(0, 0);
+/* ===== エントランス ===== */
+function enterScenario() {
+  const inputs = document.querySelectorAll('[data-key]');
+  for (let i of inputs) {
+    if (!i.value) {
+      document.getElementById('inputError').textContent =
+        '入力に不足があります！';
+      return;
     }
+    state[i.dataset.key] = i.value;
+  }
+  applyReplace();
+  showPage('page1');
+}
+
+function enterLater() {
+  document.querySelectorAll('[data-key]').forEach(i => {
+    state[i.dataset.key] = i.placeholder;
+  });
+  applyReplace();
+  showPage('page1');
+}
+
+/* ===== 文字置換 ===== */
+function applyReplace() {
+  document.body.innerHTML = document.body.innerHTML.replace(
+    /\{(.*?)\}/g,
+    (_, key) => state[key] || key
+  );
+}
+  /* ===== copy-block ===== */
+  const copyBlock = e.target.closest('.copy-block');
+  if (copyBlock && e.target === copyBlock.querySelector('::after')) return;
+
+  if (copyBlock && e.target === copyBlock) {
+    let text = copyBlock.innerHTML
+      .replace(/<rt>(.*?)<\/rt>/g, '（$1）')
+      .replace(/<[^>]+>/g, '');
+
+    navigator.clipboard.writeText(text);
+    return;
   }
 
-  // シナリオへ（入力チェックあり）
-  startButton.addEventListener("click", () => {
-    // 今回は「入力欄があってもなくても」通す
-    errorMessage.style.display = "none";
-    showPage("1");
-  });
-
-  // 後で入力（無条件）
-  skipButton.addEventListener("click", () => {
-    showPage("1");
-  });
-
-});
-
-  
-// =====================
-// コピーブロック
-// =====================
-function setupCopyBlocks(root = document) {
-  root.querySelectorAll(".copy-block").forEach(block => {
-    if (block.querySelector(".copy-btn")) return;
-
-    const btn = document.createElement("button");
-    btn.className = "copy-btn";
-    btn.textContent = "コピー";
-
-    btn.onclick = () => {
-      navigator.clipboard.writeText(block.innerText);
-      btn.textContent = "完了";
-      setTimeout(() => btn.textContent = "コピー", 1200);
-    };
-
-    block.appendChild(btn);
-  });
-}
-
-});
+  /* ===== toggle ===== */
+  if (e.target.classList.contains('toggle-btn')) {
+    const content = e.target.nextElementSibling;
+    if (!content) return;
+    content.style.display =
+      content.style.display === 'block' ? 'none' : 'block';
+  }
