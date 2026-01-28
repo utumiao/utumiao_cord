@@ -21,6 +21,16 @@ function showPage(id) {
   document.getElementById(id).classList.add('active');
 }
 
+function applyReplace() {
+  document.querySelectorAll('.page').forEach(page => {
+    page.innerHTML = page.innerHTML.replace(
+      /\{(.*?)\}/g,
+      (_, key) => state[key] || key
+    );
+  });
+}
+
+
 /* ===== エントランス ===== */
 function enterScenario() {
   const inputs = document.querySelectorAll('[data-key]');
