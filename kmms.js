@@ -12,24 +12,10 @@ function getTextWithRuby(element) {
 
   return clone.innerText;
 }
-// =====================
-// ページ制御
-// =====================
-function goTo(pageName) {
-  document.querySelectorAll(".page").forEach(page => {
-    page.classList.remove("active");
-  });
 
-  const target = document.querySelector(`.page[data-page="${pageName}"]`);
-  if (target) {
-    target.classList.add("active");
-    window.scrollTo(0, 0);
-  }
-}
 
 document.addEventListener("DOMContentLoaded", () => {
   // renderPage(0); ← これを消す
-
 
 
   // =====================
@@ -45,7 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("PC2-myouji"),
     document.getElementById("PC2-namae")
   ];
-});
+  
+// =====================
+// ページ制御
+// =====================
 
   function showPage(name) {
     document.querySelectorAll(".page").forEach(p => {
