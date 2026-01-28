@@ -154,7 +154,7 @@ p, h1, h2, h3 {
 .input-row input {
   flex: 1;
   padding: 10px;
-  border: 2px solid #e6b422;
+  border: 2px solid #b3991b;
   transform: skew(-12deg);
   background: #fff;
 }
