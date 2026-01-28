@@ -9,6 +9,8 @@ body {
 .page {
   display: none;
   min-height: 100vh;
+  max-width: 720px;
+  margin: 0 auto;
   padding: 2rem;
 }
 
@@ -90,10 +92,10 @@ button {
   margin-top: 1rem;
 }
 
-/* コピーブロック */
+/* copy-block */
 .copy-block {
-  white-space: pre-wrap;
   position: relative;
+  white-space: pre-wrap;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 1.2rem;
