@@ -137,3 +137,9 @@ function prevScenarioPage() {
   }
 
 });
+  //エントランス→シナリオ紹介の制御
+function goToPage1() {
+  showPage("1");
+  initScenarioPages();
+}
+
