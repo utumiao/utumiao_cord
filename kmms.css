@@ -124,5 +124,12 @@ button {
 /* ボックス内の段落 */
 .cstm-box-grid p { margin:0; }
 
+.scenario-page {
+  display: none;
+}
+
+.scenario-page.active {
+  display: block;
+}
 
 
