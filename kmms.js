@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', () => {
+
 const state = {};
 
 /* ===== ページ管理 ===== */
@@ -110,3 +112,4 @@ function applyReplace() {
     showPage('page1');
   }
 
+});
