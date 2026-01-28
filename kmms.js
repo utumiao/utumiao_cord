@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("PC2-myouji"),
     document.getElementById("PC2-namae")
   ];
-
+  
+  //シナリオへボタン
   startButton.addEventListener("click", () => {
     const hasEmpty = inputs.some(i => i.value.trim() === "");
     if (hasEmpty) {
@@ -20,11 +21,13 @@ document.addEventListener("DOMContentLoaded", () => {
     errorMessage.style.display = "none";
     showPage("1");
   });
-
+  
+  //後で入力ボタン
   skipButton.addEventListener("click", () => {
     showPage("1");
   });
 
+  //多分ページ制御
   function showPage(name) {
     document.querySelectorAll(".page").forEach(p => {
       p.classList.remove("active");
@@ -60,7 +63,47 @@ function prevScenarioPage() {
   }
 }
 
+  let currentScenarioIndex = 0;
+let scenarioPages = [];
 
+// シナリオページ初期化
+function initScenarioPages() {
+  scenarioPages = document.querySelectorAll(".scenario-page");
+  currentScenarioIndex = 0;
+
+  scenarioPages.forEach(p => p.classList.remove("active"));
+  if (scenarioPages.length > 0) {
+    scenarioPages[0].classList.add("active");
+    setupCopyBlocks(scenarioPages[0]);
+  }
+}
+
+// 次へ
+function nextScenarioPage() {
+  if (currentScenarioIndex >= scenarioPages.length - 1) return;
+
+  scenarioPages[currentScenarioIndex].classList.remove("active");
+  currentScenarioIndex++;
+  scenarioPages[currentScenarioIndex].classList.add("active");
+
+  setupCopyBlocks(scenarioPages[currentScenarioIndex]);
+  window.scrollTo(0, 0);
+}
+
+// 前へ
+function prevScenarioPage() {
+  if (currentScenarioIndex <= 0) return;
+
+  scenarioPages[currentScenarioIndex].classList.remove("active");
+  currentScenarioIndex--;
+  scenarioPages[currentScenarioIndex].classList.add("active");
+
+  setupCopyBlocks(scenarioPages[currentScenarioIndex]);
+  window.scrollTo(0, 0);
+}
+
+
+  //coopy-block
   function setupCopyBlocks(root = document) {
     root.querySelectorAll(".copy-block").forEach(block => {
       if (block.querySelector(".copy-btn")) return;
@@ -79,7 +122,8 @@ function prevScenarioPage() {
       block.appendChild(btn);
     });
   }
-
+  
+  //ルビ
   function getTextWithRuby(element) {
     const clone = element.cloneNode(true);
 
