@@ -49,27 +49,6 @@ function goPrev() {
   }
 }
 
-// =====================
-// コピーブロック
-// =====================
-function setupCopyBlocks(root = document) {
-  root.querySelectorAll(".copy-block").forEach(block => {
-    if (block.querySelector(".copy-btn")) return;
-
-    const btn = document.createElement("button");
-    btn.className = "copy-btn";
-    btn.textContent = "コピー";
-
-    btn.onclick = () => {
-      navigator.clipboard.writeText(block.innerText);
-      btn.textContent = "完了";
-      setTimeout(() => btn.textContent = "コピー", 1200);
-    };
-
-    block.appendChild(btn);
-  });
-}
-
 document.addEventListener("DOMContentLoaded", () => {
 
   // =====================
@@ -103,5 +82,25 @@ document.addEventListener("DOMContentLoaded", () => {
     initScenario();
   }
   
+// =====================
+// コピーブロック
+// =====================
+function setupCopyBlocks(root = document) {
+  root.querySelectorAll(".copy-block").forEach(block => {
+    if (block.querySelector(".copy-btn")) return;
+
+    const btn = document.createElement("button");
+    btn.className = "copy-btn";
+    btn.textContent = "コピー";
+
+    btn.onclick = () => {
+      navigator.clipboard.writeText(block.innerText);
+      btn.textContent = "完了";
+      setTimeout(() => btn.textContent = "コピー", 1200);
+    };
+
+    block.appendChild(btn);
+  });
+}
 
 });
