@@ -65,23 +65,23 @@ document.addEventListener("DOMContentLoaded", () => {
   // =====================
   // シナリオページ制御
   // =====================
-  let scenarioPages = [];
+  let scenario-Page = [];
   let currentIndex = 0;
 
   function initScenario() {
-    scenarioPages = Array.from(
+    scenario-Page = Array.from(
       document.querySelectorAll(".scenario-page")
     );
 
-    scenarioPages.forEach(p => p.style.display = "none");
+    scenario-Page.forEach(p => p.style.display = "none");
     currentIndex = 0;
     showScenarioPage(0);
   }
 
   function showScenarioPage(index) {
-    scenarioPages.forEach(p => p.style.display = "none");
+    scenario-Page.forEach(p => p.style.display = "none");
 
-    const page = scenarioPages[index];
+    const page = scenario-Page[index];
     if (!page) return;
 
     page.style.display = "block";
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 🔽 HTML onclick 用（これが無いとエラー出る）
   window.nextScenarioPage = function () {
-    if (currentIndex < scenarioPages.length - 1) {
+    if (currentIndex < scenario-Page.length - 1) {
       showScenarioPage(currentIndex + 1);
     }
   };
