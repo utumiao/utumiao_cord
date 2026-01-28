@@ -1,21 +1,35 @@
+// =====================
+// ルビ付きテキスト取得
+// =====================
+function getTextWithRuby(element) {
+  const clone = element.cloneNode(true);
+
+  clone.querySelectorAll("ruby").forEach(ruby => {
+    const rb = ruby.childNodes[0]?.textContent || "";
+    const rt = ruby.querySelector("rt")?.textContent || "";
+    ruby.replaceWith(`${rb}（${rt}）`);
+  });
+
+  return clone.innerText;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 
   // =====================
-  // ページ切り替え（大枠）
+  // 大枠ページ切り替え
   // =====================
-function showPage(name) {
-  document.querySelectorAll(".page").forEach(p => {
-    p.classList.remove("active");
-  });
+  function showPage(name) {
+    document.querySelectorAll(".page").forEach(p => {
+      p.classList.remove("active");
+    });
 
-  const target = document.querySelector(`.page[data-page="${name}"]`);
-  if (target) {
-    target.classList.add("active");
-    setupCopyBlocks(target); // ← ここ！
-    window.scrollTo(0, 0);
+    const target = document.querySelector(`.page[data-page="${name}"]`);
+    if (target) {
+      target.classList.add("active");
+      setupCopyBlocks(target);
+      window.scrollTo(0, 0);
+    }
   }
-}
-
 
   // =====================
   // エントランス
@@ -61,7 +75,6 @@ function showPage(name) {
 
     scenarioPages.forEach(p => p.style.display = "none");
     currentIndex = 0;
-
     showScenarioPage(0);
   }
 
@@ -77,7 +90,7 @@ function showPage(name) {
     window.scrollTo(0, 0);
   }
 
-  // HTMLから呼ぶ用
+  // 🔽 HTML onclick 用（これが無いとエラー出る）
   window.nextScenarioPage = function () {
     if (currentIndex < scenarioPages.length - 1) {
       showScenarioPage(currentIndex + 1);
@@ -90,7 +103,7 @@ function showPage(name) {
     }
   };
 
-// =====================
+  // =====================
   // コピーブロック
   // =====================
   function setupCopyBlocks(root = document) {
@@ -101,28 +114,15 @@ function showPage(name) {
       btn.className = "copy-btn";
       btn.textContent = "コピー";
 
-btn.onclick = () => {
-  const text = getTextWithRuby(block);
-  navigator.clipboard.writeText(text);
-  btn.textContent = "完了";
-  setTimeout(() => btn.textContent = "コピー", 1200);
-};
-
+      btn.onclick = () => {
+        const text = getTextWithRuby(block);
+        navigator.clipboard.writeText(text);
+        btn.textContent = "完了";
+        setTimeout(() => btn.textContent = "コピー", 1200);
+      };
 
       block.appendChild(btn);
     });
   }
 
 });
-
-function getTextWithRuby(element) {
-  const clone = element.cloneNode(true);
-
-  clone.querySelectorAll("ruby").forEach(ruby => {
-    const rb = ruby.childNodes[0]?.textContent || "";
-    const rt = ruby.querySelector("rt")?.textContent || "";
-    ruby.replaceWith(`${rb}（${rt}）`);
-  });
-
-  return clone.innerText;
-}
