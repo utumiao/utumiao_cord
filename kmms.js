@@ -65,21 +65,44 @@ document.addEventListener("DOMContentLoaded", () => {
   // =====================
   // シナリオページ制御
   // =====================
- function showPage(pageId) {
-  document.querySelectorAll('.page')
-    .forEach(p => p.classList.remove('active'));
+  let scenarioPages = [];
+  let currentIndex = 0;
 
-  document.getElementById(pageId)
-    .classList.add('active');
-   
-       const page = scenario-Page[index];
+  function initScenario() {
+    scenarioPages = Array.from(
+      document.querySelectorAll(".scenario-page")
+    );
+
+    scenarioPages.forEach(p => p.style.display = "none");
+    currentIndex = 0;
+
+    showScenarioPage(0);
+  }
+
+  function showScenarioPage(index) {
+    scenarioPages.forEach(p => p.style.display = "none");
+
+    const page = scenarioPages[index];
     if (!page) return;
 
     page.style.display = "block";
     setupCopyBlocks(page);
     currentIndex = index;
     window.scrollTo(0, 0);
-}
+  }
+
+  // HTMLから呼ぶ用
+  window.nextScenarioPage = function () {
+    if (currentIndex < scenarioPages.length - 1) {
+      showScenarioPage(currentIndex + 1);
+    }
+  };
+
+  window.prevScenarioPage = function () {
+    if (currentIndex > 0) {
+      showScenarioPage(currentIndex - 1);
+    }
+  };
 
 
   // =====================
