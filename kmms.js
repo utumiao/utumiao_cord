@@ -49,23 +49,6 @@ function showScenarioPage(index) {
   scenarioPages[index].classList.add("active");
 }
 
-function nextScenarioPage() {
-  if (currentScenarioIndex < scenarioPages.length - 1) {
-    currentScenarioIndex++;
-    showScenarioPage(currentScenarioIndex);
-  }
-}
-
-function prevScenarioPage() {
-  if (currentScenarioIndex > 0) {
-    currentScenarioIndex--;
-    showScenarioPage(currentScenarioIndex);
-  }
-}
-
-  let currentScenarioIndex = 0;
-let scenarioPages = [];
-
 // シナリオページ初期化
 function initScenarioPages() {
   scenarioPages = document.querySelectorAll(".scenario-page");
@@ -77,31 +60,6 @@ function initScenarioPages() {
     setupCopyBlocks(scenarioPages[0]);
   }
 }
-
-// 次へ
-function nextScenarioPage() {
-  if (currentScenarioIndex >= scenarioPages.length - 1) return;
-
-  scenarioPages[currentScenarioIndex].classList.remove("active");
-  currentScenarioIndex++;
-  scenarioPages[currentScenarioIndex].classList.add("active");
-
-  setupCopyBlocks(scenarioPages[currentScenarioIndex]);
-  window.scrollTo(0, 0);
-}
-
-// 前へ
-function prevScenarioPage() {
-  if (currentScenarioIndex <= 0) return;
-
-  scenarioPages[currentScenarioIndex].classList.remove("active");
-  currentScenarioIndex--;
-  scenarioPages[currentScenarioIndex].classList.add("active");
-
-  setupCopyBlocks(scenarioPages[currentScenarioIndex]);
-  window.scrollTo(0, 0);
-}
-
 
   //coopy-block
   function setupCopyBlocks(root = document) {
@@ -136,10 +94,34 @@ function prevScenarioPage() {
     return clone.innerText;
   }
 
-});
-  //エントランス→シナリオ紹介の制御
+    //エントランス→シナリオ紹介の制御
 function goToPage1() {
   showPage("1");
   initScenarioPages();
 }
+
+});
+function nextScenarioPage() {
+  if (currentScenarioIndex >= scenarioPages.length - 1) return;
+
+  scenarioPages[currentScenarioIndex].classList.remove("active");
+  currentScenarioIndex++;
+  scenarioPages[currentScenarioIndex].classList.add("active");
+
+  setupCopyBlocks(scenarioPages[currentScenarioIndex]);
+  window.scrollTo(0, 0);
+}
+
+function prevScenarioPage() {
+  if (currentScenarioIndex <= 0) return;
+
+  scenarioPages[currentScenarioIndex].classList.remove("active");
+  currentScenarioIndex--;
+  scenarioPages[currentScenarioIndex].classList.add("active");
+
+  setupCopyBlocks(scenarioPages[currentScenarioIndex]);
+  window.scrollTo(0, 0);
+}
+
+
 
