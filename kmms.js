@@ -38,6 +38,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  let currentScenarioIndex = 0;
+const scenarioPages = document.querySelectorAll(".scenario-page");
+
+function showScenarioPage(index) {
+  scenarioPages.forEach(p => p.classList.remove("active"));
+  scenarioPages[index].classList.add("active");
+}
+
+function nextScenarioPage() {
+  if (currentScenarioIndex < scenarioPages.length - 1) {
+    currentScenarioIndex++;
+    showScenarioPage(currentScenarioIndex);
+  }
+}
+
+function prevScenarioPage() {
+  if (currentScenarioIndex > 0) {
+    currentScenarioIndex--;
+    showScenarioPage(currentScenarioIndex);
+  }
+}
+
+
   function setupCopyBlocks(root = document) {
     root.querySelectorAll(".copy-block").forEach(block => {
       if (block.querySelector(".copy-btn")) return;
