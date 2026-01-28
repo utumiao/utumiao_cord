@@ -3,17 +3,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // =====================
   // ページ切り替え（大枠）
   // =====================
-  function showPage(name) {
-    document.querySelectorAll(".page").forEach(p => {
-      p.classList.remove("active");
-    });
+function showPage(name) {
+  document.querySelectorAll(".page").forEach(p => {
+    p.classList.remove("active");
+  });
 
-    const target = document.querySelector(`.page[data-page="${name}"]`);
-    if (target) {
-      target.classList.add("active");
-      window.scrollTo(0, 0);
-    }
+  const target = document.querySelector(`.page[data-page="${name}"]`);
+  if (target) {
+    target.classList.add("active");
+    setupCopyBlocks(target); // ← ここ！
+    window.scrollTo(0, 0);
   }
+}
+
 
   // =====================
   // エントランス
