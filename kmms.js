@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // =====================
   // エントランス
   // =====================
+  const entrance = document.getElementById("entrance");
   const startButton = document.getElementById("start-button");
   const skipButton  = document.getElementById("skip-button");
   const errorMessage = document.getElementById("error-message");
