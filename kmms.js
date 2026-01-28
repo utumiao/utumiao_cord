@@ -15,7 +15,7 @@ function getTextWithRuby(element) {
 // =====================
 // ページ制御
 // =====================
-const root = document.getElementById("scenario-root");
+const root = document.getElementById("scenario-page");
 let currentIndex = 0;
 const history = [];
 
