@@ -1,252 +1,378 @@
 body {
   margin: 0;
-  font-family: "Source Han Sans JP", sans-serif,"Noto Serif JP", serif,"Zen Kaku Gothic Antique", sans-serif;
-  background: #f3f4f6;
+  font-family: "Zen Kaku Gothic Antique", sans-serif,"Noto Serif JP",serif, "Noto Sans JP",sans-serif;
+  font-weight: 500;
+  background: #f7e9ff;
+  background-image:
+    linear-gradient(to bottom, #e1dce7, #293c57);
   color: #10223a;
 }
 
-.noto-serif-jp-<uniquifier> {
-  font-family: "Noto Serif JP", serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-}
 
-.zen-kaku-gothic-antique-regular {
-  font-family: "Zen Kaku Gothic Antique", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-
-/* 見出し */
-h1 {
-  font-family: "Zen Kaku Gothic New", sans-serif;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-/* ===== ヘッダー ===== */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
+/* ----- フォームや操作系ボタンのまとまり ----- */
+.group {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 20px;
-  background: linear-gradient(
-    to bottom,
-    #0f0f66,
-    #6e1f2a
-  );
-  color: white;
-  transition: background 0.3s, opacity 0.3s;
-}
-
-.header-title {
-  font-weight: bold;
-}
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: transparent;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.header.scrolled {
-  background-color: #ffffff;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-}
-
-.header__inner {
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: clamp(16px, 5vw, 40px);
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.hero {
-  height: 150vh;
-  background-color: #e0f7fa;
-  padding: 2rem;
-}
-
-.hero-subtext {
-  text-align: right;
-  font-weight: bold;
+  flex-wrap: wrap;
+  gap: 1rem;
   margin-bottom: 1rem;
 }
 
-.content {
-  padding: 2rem;
-  background-color: #fafafa;
+.group label {
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
 }
 
-#pageMenuBtn {
+input, button, select {
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #b2456c;
+  color: #fff;
+  border: none;
   border-radius: 20px;
-  padding: 6px 12px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.page-menu {
+button:hover {
+  background-color: #6e1f2a;
+}
+
+select:hover, input:hover {
+  border-color: #888;
+}
+
+/* ----- シナリオ章の表示 ----- */
+#chapter-title {
+  font-family: "Source Han Sans JP", sans-serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-top: 2rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.5rem;
+  text-align: center;
+}
+
+#chapter-content {
+  white-space: pre-line;
+  margin: 1rem 0;
+}
+
+ <!-- ✅ 補助CSS -->
+ 
+  <style>
+
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px; /* 必要に応じて調整 */
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 影があれば視認性↑ */
+}
+
+/*ヘッダー固定 */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: white;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/*ヘッダーの高さ分マージンをしっかり与える */
+#scenario-box {
+  margin: 100px auto 2rem; /* ← 上はヘッダー高さ + 余白として大きめに */
+  padding: 2rem;
+  max-width: 800px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   display: none;
-  position: absolute;
-  right: 10px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.2);
 }
 
-.page-menu div {
-  padding: 8px 12px;
+    #entrance {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 120, 215, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      z-index: 1500;
+    }
+
+    #entrance input {
+      padding: 0.5rem;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 250px;
+      text-align: center;
+    }
+
+    #chapter-title {
+      font-family: "Source Han Sans JP", sans-serif;s
+      margin-top: 2rem;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.4rem;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+/* ----- シナリオ本文のデザイン ----- */
+.copy-paragraph-btn {
+  position: absolute;
+  transform: translateY(-50%);
+  top: -0.1rem;
+  right: 1rem;
+  background-color: #5b5e86; /*背景 */
+  border: none;
+  border-radius: 7px;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.3rem 0.5rem;
+  transition: background-color 0.2s ease;
+  font-size: 0.8rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.copy-paragraph-btn:hover {
+  background-color: #cbcfed;
+  color: #000;
+}
+
+.copy-block {
+  position: relative; /* 📌 ボタンの absolute 位置決め用 */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ----- トグルボタンのデザイン ----- */
+    .toggle-btn {
+ 　　 display: flex;
+ 　　 justify-content: center;
+ 　　 align-items: center;
+ 　　 text-align: center;
+	  border: none;
+      border-radius: 100px;
+      padding: 0.3rem 0.9rem;
+      background: #000;
+      cursor: pointer;
+}
+    .toggle-content {
+      display: none;
+      padding: 1rem;
+      background: #f3f4f6;
+      margin-top: .5rem;
+    }
+
+/* ----- 選択肢ボタンのデザイン ----- */
+/* 選択肢ボタン全体の配置（縦並び・間隔） */
+#choice-container {
+  display: flex;
+  flex-wrap: wrap;        /* 複数行対応 */
+  gap: 1rem;
+  justify-content: center; /* ボタンを中央寄せ */
+  margin-top: 2rem;
+}
+
+/* 選択肢ボタン（「導入へ」など）のデザイン */
+.choices{
+  display: inline-block;
+  width: auto;
+  padding: 0.6rem 1.2rem;
+  margin: 0.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* 名前入力へ戻る */
+#back-to-entrance-btn {
+  margin-top: 2rem; /* 選択肢ボタンとの間に余白を追加 */
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  background-color: #607D8B;
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
   cursor: pointer;
 }
 
-/* ===== ページ ===== */
-.page {
-  display: none;
-  padding: 20px;
-  max-width: 720px;
-  margin: 0 auto;
-}
 
-.page.active {
-  display: block;
-}
-
-/* ===== 入力 ===== */
-.input-row {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-input {
-  flex: 1;
-  padding: 6px;
-}
-
-/* ===== エラー ===== */
-.error {
-  color: red;
-  margin-bottom: 10px;
-}
-
-/* ===== note ===== */
+/* ----- 本文の注釈 ----- */
 .note {
    margin: 2em auto; /* 外側余白 */
    padding: 2em; /* 内側余白 */
-   background-image: 
-   linear-gradient(0deg, transparent 19px, #d3d3d3 20px), /* 横のグラデーション */
-   linear-gradient(90deg, transparent 19px, #d3d3d3 20px); /* 縦のグラデーション */
-   background-size: 20px 20px; /* 方眼のサイズ */
+   position: relative; /* 擬似要素配置の基準 */
+   border: 8px solid #ece4f2; /* 枠線（太さ・種類・色） */
+   z-index: 0; /* 重なり順 */
    max-width: 800px; /* 最大幅 */
 }
 
-/* ボックス内の段落 */
-.cstm-box-grid p { margin:0; }
-
-/* ===== copy-block ===== */
-.copy-block {
-  position: relative;
-  border: 1px solid #ccc;
-  padding: 12px;
-  margin: 12px 0;
+.note::before {
+   content: ''; /* 擬似要素にコンテンツなし */
+   display: block; /* ブロック要素として表示 */
+   position: absolute; /* 絶対位置指定 */
+   top: -8px; /* 上に配置 */
+   left: -8px; /* 左に配置 */
+   width: 8px; /* サイズ（幅） */
+   height: 8px; /* サイズ（高さ） */
+   background-color: #b2456c; /* ワンポイントの色 */
+   z-index: 1; /* 前面に表示 */
 }
 
-.copy-btn {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-}
+/* 段落の余白リセット */
+.note p { margin: 0;}
 
-.copy-content {
-  white-space: pre-wrap;
-}
-
-/* ===== トグル ===== */
-.toggle-content {
-  display: none;
-  margin-top: 8px;
-}
-
-/* ===== 範囲外文字（p, h） ===== */
-p, h1, h2, h3 {
-  font-family: "Zen Kaku Gothic Antique", sans-serif;
-  font-weight: 400;
+/* ----- ヘッダーテキスト ----- */
+.logo-text {
+  font-family: "BIZ UDPMincho", serif;
+  font-weight: 700;
   font-style: normal;
+  font-size: 1.4em;
+  color: #ede9e8;
+  margin-right: 1rem;
 }
 
-/* ===== エントランス中央寄せ ===== */
-#entrance {
-  min-height: 70vh;
+/* ----- シナリオへボタン ----- */
+#start-btn {
+  padding: 0.6rem 1.2rem;
+  background-color: #b2456c;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#start-btn:hover {
+  background-color: #6e1f2a;  /* ホバー時に少し濃く */
+}
+
+
+/* ----- スキップボタン ----- */
+#skip-btn {
+  padding: 0.6rem 1.2rem;
+  background-color: #000;  /* 色 */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#skip-btn:hover {
+  background-color: #607D8B;
+}
+
+/* ----- ボタン配置調整 ----- */
+.button-group {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 0.8rem;
   align-items: center;
-  gap: 16px;
+  margin-top: 1rem;
 }
 
-/* HOタイトル */
-#entrance h2 {
-  color: #0f0f66;
-  margin-bottom: 4px;
-  font-family: "Noto Serif JP", serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
+/* ----- イベント用のボックスデザイン ----- */
+.box17 {
+  display: inline-block;
+  margin: 1.5em; /* 外側余白を少し抑える（上下左右均等） */
+  position: relative;
+  padding: 1em 2em; /* ⬅ 上下1em、左右2emに調整 */
+  border-top: solid 2px black;
+  border-bottom: solid 2px black;
+  box-sizing: border-box;
+}
+
+/* ▍左右の縦線 */
+.box17 {
+  display: inline-block;
+  margin: 1.5em; /* 外側余白を少し抑える（上下左右均等） */
+  position: relative;
+  padding: 1em 2em; /* ⬅ 上下1em、左右2emに調整 */
+  border-top: solid 2px black;
+  border-bottom: solid 2px black;
+  box-sizing: border-box;
+}
+
+/* ▍左右の縦線 */
+.box17:before, .box17:after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  width: 2px;
+  height: calc(100% + 20px); /* 上下10pxはみ出し */
+  background-color: black;
+}
+
+.box17:before {
+  left: 10px;
+}
+
+.box17:after {
+  right: 10px;
+}
+
+/* ▍内側のテキスト */
+.box17 p {
+  margin: 0;
+  padding: 0;
+}
+
+/* 区切り線 */
+hr {
+	border: 0;
+	height: 8px;
+	background-image:
+		repeating-linear-gradient(45deg, #777 0px, #777 1px, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%),
+		repeating-linear-gradient(135deg, #777 0px, #777 1px, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%);
+	background-size: 8px 8px;
+}
+
+img {
+  width: 800px;
+  height: 600px;
+  object-fit: contain;
 }
 
 /* 入力欄横並び */
 .input-row {
   display: flex;
   gap: 12px;
-  width: 100%;
-  max-width: 400px;
+  max-width: 100px;
+  justify-content: center;
+  margin: 0 auto;
 }
 
-/* 入力欄（平行四辺形） */
-.input-row input {
-  flex: 1;
-  padding: 8px;
-  border: 1.75px solid #0f0f66;
-  transform: skew(-12deg);
-  background: #fff;
-}
 
-.input-row input::placeholder {
-  color: #999;
-}
-
-/* ===== 共通ボタン ===== */
-button {
-  padding: 10px 26px;
-  border-radius: 999px;
-  border: none;
-  color: white;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-/* 明ボタン */
-.enter-scenario {
-  background: #b2456c;
-}
-
-.enter-scenario:hover {
-  background: #6e1f2a;
-}
-
-/* 後で入力 */
-.enter-later {
-  background: #000;
-}
-
-.enter-later:hover {
-  background: #666;
-}
-
+  </style>
